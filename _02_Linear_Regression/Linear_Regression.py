@@ -15,7 +15,7 @@ def ridge(data):
     # weight = np.dot(np.linalg.inv((np.dot(x.T,x)+np.dot(alpha,np.eye(6)))),np.dot(x.T,y))
     XtX = np.dot(X.T, X)
     n = X.shape[0]
-    return np.linalg.solve(XtX + alpha * n * np.identity(X.shape[1]), np.dot(X.T, y))
+    return data @ np.linalg.solve(XtX + alpha * n * np.identity(X.shape[1]), np.dot(X.T, y))
     # return weight @ data
 
 
