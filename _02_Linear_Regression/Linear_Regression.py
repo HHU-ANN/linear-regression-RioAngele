@@ -39,7 +39,7 @@ def model_lasso(X,y,alpha,rate,weight):
         # 更新权重
         weight -= rate * gradient / n
     
-    weight*=1e-3
+    weight*=1e-5
     return weight
 
 def read_data(path='./data/exp02/'):
