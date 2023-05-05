@@ -38,6 +38,8 @@ def model_lasso(X,y,alpha,rate,weight):
         gradient = np.dot(X.T, np.dot(X, weight) - y) + alpha * np.sign(weight)
         # 更新权重
         weight -= rate * gradient / n
+    
+    weight*=1e-2
     return weight
 
 def read_data(path='./data/exp02/'):
