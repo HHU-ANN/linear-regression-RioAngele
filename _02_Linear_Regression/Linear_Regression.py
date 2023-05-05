@@ -37,7 +37,7 @@ def model_lasso(X,y,alpha,rate,weight):
         # 计算梯度
         gradient = np.dot(X.T, np.dot(X, weight) - y) + alpha * np.sign(weight)
         # 更新权重
-        weight -= rate * gradient / n
+        weight += rate * gradient / n
     
     return weight
 
