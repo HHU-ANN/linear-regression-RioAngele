@@ -20,7 +20,7 @@ def lasso(data):
     x, Y = read_data()
     weight = data
     y = np.dot(weight, x.T)
-    alpha = 2.1
+    alpha = 2.001
     rate = 0.00000007
     weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
