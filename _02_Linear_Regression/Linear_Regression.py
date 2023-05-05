@@ -11,11 +11,10 @@ except ImportError as e:
 
 def ridge(data):
     X,y = read_data()
-    alpha= 0
     # weight = np.dot(np.linalg.inv((np.dot(x.T,x)+np.dot(alpha,np.eye(6)))),np.dot(x.T,y))
     XtX = np.dot(X.T, X)
     n = X.shape[0]
-    return data @ np.linalg.solve(XtX + alpha * n * np.identity(X.shape[1]), np.dot(X.T, y))
+    return data @ np.linalg.solve(XtX , np.dot(X.T, y))
     # return weight @ data
 
 
@@ -24,7 +23,7 @@ def lasso(data):
     weight = data
     y = np.dot(weight, x.T)
     alpha = 2.1
-    rate = 0.0000000000079824
+    rate = 0.00000000000007
     weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
 
