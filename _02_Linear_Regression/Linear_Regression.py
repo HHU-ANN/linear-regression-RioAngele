@@ -11,7 +11,7 @@ except ImportError as e:
 
 def ridge(data):
     X,y = read_data()
-    alpha= -0.5
+    alpha= -0.9
     # weight = np.dot(np.linalg.inv((np.dot(x.T,x)+np.dot(alpha,np.eye(6)))),np.dot(x.T,y))
     XtX = np.dot(X.T, X)
     n = X.shape[0]
@@ -38,9 +38,9 @@ def model_lasso(X,y,alpha,rate,weight):
     n = X.shape[0]
     for i in range(8000):
         # 计算梯度
-        gradient = np.dot(X.T, np.dot(X, w) - y) + alpha * np.sign(w)
+        gradient = np.dot(X.T, np.dot(X, weight) - y) + alpha * np.sign(weight)
         # 更新权重
-        w -= rate * gradient / n
+        weight -= rate * gradient / n
     return weight
 
 def read_data(path='./data/exp02/'):
