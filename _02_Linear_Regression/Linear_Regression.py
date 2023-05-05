@@ -19,8 +19,8 @@ def ridge(data):
 def lasso(data):
     x, Y = read_data()
     weight = data
-    alpha = 3000
-    rate = 0.00000000086
+    alpha = 3432
+    rate = 8e-10
     weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
 
