@@ -20,8 +20,8 @@ def lasso(data):
     x, Y = read_data()
     weight = data
     y = np.dot(weight, x.T)
-    alpha = 30
-    rate = 0.0000007
+    alpha = 2.45
+    rate = 0.00000007
     weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
 
@@ -33,7 +33,7 @@ def model_lasso(X,y,alpha,rate,weight):
     #     dw = np.dot(y - Y, x) + alpha * np.sign(weight)
     #     weight = weight * (1 - (rate * alpha / 6)) - dw * rate
     n = X.shape[0]
-    for i in range(90000):
+    for i in range(9000):
         # 计算梯度
         gradient = np.dot(X.T, np.dot(X, weight) - y) + alpha * np.sign(weight)
         # 更新权重
