@@ -19,26 +19,18 @@ def ridge(data):
 def lasso(data):
     x, Y = read_data()
     weight = data
-    alpha = 0.01
-    rate = 0.1
+    alpha = 3426
+    rate = 1e-10
     weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
 
 
 
-def model_lasso(X,y,alpha,rate,weight):
-    # for i in range(int(186452)):
-    #     y = np.dot(weight, X.T)
-    #     dw = np.dot(y - Y, x) + alpha * np.sign(weight)
-    #     weight = weight * (1 - (rate * alpha / 6)) - dw * rate
-    n = X.shape[0]
-    for i in range(100):
-        y = np.dot(weight, X.T)
-        # 计算梯度
-        gradient = np.dot(X.T, np.dot(X, weight) - y) + alpha * np.sign(weight)
-        # 更新权重
-        weight += rate * gradient / n
-    
+def model_lasso(x,Y,alpha,rate,weight):
+    for i in range(int(186452)):
+        y = np.dot(weight, x.T)
+        dw = np.dot(y - Y, x) + alpha * np.sign(weight)
+        weight = weight * (1 - (rate * alpha / 6)) - dw * rate
     return weight
 
 def read_data(path='./data/exp02/'):
