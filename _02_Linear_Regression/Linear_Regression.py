@@ -20,11 +20,9 @@ def lasso(data):
     x, Y = read_data()
     weight = data
     alpha = 3426
-    rate = 1e-10
+    rate = 1e-9
     weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
-
-
 
 def model_lasso(x,Y,alpha,rate,weight):
     for i in range(int(186452)):
