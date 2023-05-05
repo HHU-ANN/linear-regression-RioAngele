@@ -19,13 +19,13 @@ def ridge(data):
 def lasso(data):
     x, Y = read_data()
     weight = data
-    alpha = 3426
-    rate = 1e-9
+    alpha = 3000
+    rate = 0.00000000086
     weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
 
 def model_lasso(x,Y,alpha,rate,weight):
-    for i in range(int(186452)):
+    for i in range(int(2e4)):
         y = np.dot(weight, x.T)
         dw = np.dot(y - Y, x) + alpha * np.sign(weight)
         weight = weight * (1 - (rate * alpha / 6)) - dw * rate
