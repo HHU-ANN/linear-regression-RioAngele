@@ -11,22 +11,29 @@ except ImportError as e:
 
 def ridge(data):
     x,y = read_data()
-    lambd = -0.1
-    weight = np.dot(np.linalg.inv((np.dot(x.T,x)+np.dot(lambd,np.eye(6)))),np.dot(x.T,y))
+    alpha= -0.1
+    weight = model_ridge
     return weight @ data
-    
+
+def model_ridge(x,y,alpha):
+    return np.dot(np.linalg.inv((np.dot(x.T,x)+np.dot(alpha,np.eye(6)))),np.dot(x.T,y))
+
 def lasso(data):
     x, Y = read_data()
     weight = data
     y = np.dot(weight, x.T)
-    lambd = 3000
+    alpha = 3000
     rate = 0.00000000086
-    for i in range(int(2e5)):
-        y = np.dot(weight, x.T)
-        dw = np.dot(y - Y, x) + lambd * np.sign(weight)
-        weight = weight * (1 - (rate * lambd / 6)) - dw * rate
+    weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
 
+def model_lasso(x,Y,alpha,rate,weight):
+    for i in range(int(2e5)):
+        y = np.dot(weight, x.T)
+        dw = np.dot(y - Y, x) + alpha * np.sign(weight)
+        weight = weight * (1 - (rate * alpha / 6)) - dw * rate
+    
+    return weight
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
