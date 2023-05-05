@@ -21,7 +21,7 @@ def lasso(data):
     weight = data
     y = np.dot(weight, x.T)
     alpha = 2.001
-    rate = 0.00000007
+    rate = 0.00000004
     weight =model_lasso(x,Y,alpha,rate,weight)
     return weight @ data
 
@@ -39,7 +39,6 @@ def model_lasso(X,y,alpha,rate,weight):
         # 更新权重
         weight -= rate * gradient / n
     
-    weight=1e-10*weight
     return weight
 
 def read_data(path='./data/exp02/'):
